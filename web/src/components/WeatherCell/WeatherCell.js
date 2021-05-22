@@ -31,7 +31,7 @@ export const Success = ({ weather }) => {
   return (
     <section>
       <h1>{weather.city}</h1>
-      <h2>
+      <h2 className="font-sans">
         <img src={weather.icon} style={{ maxWidth: '2rem' }} />
         <span>
           {weather.temp}°F and {weather.conditions}
