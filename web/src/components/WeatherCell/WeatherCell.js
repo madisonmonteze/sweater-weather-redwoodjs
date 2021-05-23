@@ -5,7 +5,6 @@ export const QUERY = gql`
       city
       conditions
       temp
-      icon
     }
   }
 `
@@ -15,28 +14,24 @@ export const Loading = () => <div>Loading...</div>
 export const Empty = () => <div>Empty</div>
 
 export const Failure = ({ error }) => (
-  <span
-    style={{
-      backgroundColor: '#ffdfdf',
-      color: '#990000',
-      padding: '0.5rem',
-      display: 'inline-block',
-    }}
-  >
+  <section className="card text-2xl text-red bg-pink font-ibmMono italic">
     {error.message.replace('GraphQL error: ', '')}
-  </span>
+  </section>
 )
 
 export const Success = ({ weather }) => {
+  let SuccessMsg = ''
+
+  if (weather.temp >= 55 && weather.temp <= 65) {
+    SuccessMsg = `Yes, it\'s sweater weather in ${weather.city}. The current temperature is ${weather.temp}°F.`
+  } else if (weather.temp > 65) {
+    SuccessMsg = `Sorry, it\'s probably too warm to wear a sweater in ${weather.city}. The current temperature is ${weather.temp}°F.`
+  } else {
+    SuccessMsg = `Sorry, it\'s probably too cold to wear just a sweater in ${weather.city}. The current temperature is ${weather.temp}°F.`
+  }
   return (
-    <section>
-      <h1>{weather.city}</h1>
-      <h2 className="font-sans">
-        <img src={weather.icon} style={{ maxWidth: '2rem' }} />
-        <span>
-          {weather.temp}°F and {weather.conditions}
-        </span>
-      </h2>
+    <section className="card text-3xl text-red font-ibmMono md:px-4">
+      {SuccessMsg}
     </section>
   )
 }
