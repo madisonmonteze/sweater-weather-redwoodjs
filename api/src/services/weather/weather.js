@@ -7,7 +7,7 @@ export const getWeather = async ({ zip }) => {
   const json = await response.json()
 
   if (json.cod === '404') {
-    return new Error(`${zip} isn't a valid US zip code, please try again`)
+    return new Error(`${zip} isn't a valid US zip code, please try again...`)
   }
 
   return {
